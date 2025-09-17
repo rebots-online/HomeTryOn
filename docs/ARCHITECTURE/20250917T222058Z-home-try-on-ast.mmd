@@ -1,0 +1,34 @@
+graph TD
+    subgraph AppLayer
+        App[App Component]
+    end
+
+    subgraph UIComponents
+        Header
+        ImageUploader
+        ObjectCard
+        ProductSelector
+        AddProductModal
+        DebugModal
+        Spinner
+        TouchGhost
+    end
+
+    subgraph Services
+        GeminiService
+    end
+
+    subgraph Domain
+        ProductType(Product Interface)
+    end
+
+    App --> Header
+    App --> ImageUploader
+    App --> ObjectCard
+    App --> DebugModal
+    App --> TouchGhost
+    App --> Spinner
+    App --> GeminiService
+    ImageUploader --> Spinner
+    ObjectCard --> ProductType
+    GeminiService --> ProductType

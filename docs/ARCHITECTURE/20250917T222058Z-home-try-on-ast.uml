@@ -1,0 +1,51 @@
+@startuml HomeTryOnAST
+skinparam componentStyle rectangle
+skinparam ArrowColor #555555
+skinparam ComponentBorderColor #333333
+skinparam ComponentBackgroundColor #F7F7FA
+
+package "App Layer" {
+  component App {
+    {method} useState hooks
+    {method} handleProductImageUpload()
+    {method} handleInstantStart()
+    {method} handleProductDrop()
+    {method} handleReset()
+    {method} render()
+  }
+}
+
+package "UI Components" {
+  component Header
+  component ImageUploader
+  component ObjectCard
+  component ProductSelector
+  component AddProductModal
+  component DebugModal
+  component Spinner
+  component TouchGhost
+}
+
+package "Services" {
+  component GeminiService {
+    {method} uploadImageToGemini()
+    {method} generateCompositeImage()
+  }
+}
+
+package "Domain Types" {
+  component ProductType
+}
+
+App --> Header
+App --> ImageUploader
+App --> ObjectCard
+App --> DebugModal
+App --> TouchGhost
+App --> Spinner
+App --> GeminiService
+ImageUploader --> Spinner
+ObjectCard --> ProductType
+GeminiService --> ProductType
+
+@enduml
